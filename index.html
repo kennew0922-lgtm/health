@@ -2,6 +2,12 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+
+    <!-- 1. 音源の配置（IDをユニークにする） -->
+    <audio id="click" preload="auto">
+    <source src="https://socrarius-tool.com/launcher/magic20.mp3" type="audio/mp3">
+    </audio>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HEALTH CHECK SYSTEM</title>
     <style>
@@ -449,22 +455,22 @@
     <div class="ｍedication-title">ONLINE CONSULTATIONS & MEDICATION</div>
 
     <div class="gallery">
-                <a href="https://clinic.dmm.com/" target="_blank" class="icon-link">
+                <a href="https://clinic.dmm.com/" target="_blank" class="icon-link play-sound" data-sound="click">
                     <img src="https://socrarius-tool.com/health/icon1.png">
                 </a>
-                <a href="https://estore.nicho.co.jp/" target="_blank" class="icon-link">
+                <a href="https://estore.nicho.co.jp/" target="_blank" class="icon-link play-sound" data-sound="click">
                     <img src="https://socrarius-tool.com/health/icon2.png">
                 </a>
-                <a href="https://net-kusuri.com/" target="_blank" class="icon-link">
+                <a href="https://net-kusuri.com/" target="_blank" class="icon-link play-sound" data-sound="click">
                     <img src="https://socrarius-tool.com/health/icon3.png">
                 </a>
-                <a href="https://goo-med.com/" target="_blank" class="icon-link">
+                <a href="https://goo-med.com/" target="_blank" class="icon-link play-sound" data-sound="click">
                     <img src="https://socrarius-tool.com/health/icon4.png">
                 </a>
-                <a href="https://www.amazon.co.jp/" target="_blank" class="icon-link">
+                <a href="https://www.amazon.co.jp/" target="_blank" class="icon-link play-sound" data-sound="click">
                     <img src="https://socrarius-tool.com/health/icon5.png">
                 </a>
-                <a href="https://shopping.yahoo.co.jp/" target="_blank" class="icon-link">
+                <a href="https://shopping.yahoo.co.jp/" target="_blank" class="icon-link play-sound" data-sound="click">
                     <img src="https://socrarius-tool.com/health/icon6.png">
                 </a>
             </div>
@@ -709,6 +715,19 @@ function renderSleepList() {
 
 // 実行！
 renderSleepList();
+
+//3. 音を鳴らすJavaScript（HTMLを増やしてもこのまま共通で使える）
+    const soundLinks = document.querySelectorAll('.play-sound');
+    soundLinks.forEach(link => {
+    link.addEventListener('click', () => {
+    const soundId = link.getAttribute('data-sound');
+    const audio = document.getElementById(soundId);
+    if (audio) {
+    audio.currentTime = 0;
+    audio.play().catch(e => console.log("Audio play blocked:", e));
+    }
+    });
+    });
     </script>
 </body>
 </html>
