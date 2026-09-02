@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HEALTH CHECK SYSTEM</title>
+    <style>
+        body {
+            background: rgba(0, 5, 15, 0.9);
+            color: #e0f7ff;
+            font-family: 'Consolas', 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* 🌸 上部固定バナー */
+        .system-banner {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            height: 40px;
+            background: rgba(0, 35, 76, 1);
+            display: flex;
+            align-items: center;
+            padding-left: 20px;
+            font-size: 14px;
+            letter-spacing: 2px;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+        }
+
+        /* 🌸 セクションタイトル */
+        .section-title {
+            background: #000;
+            color: #00f2fe;
+            padding: 8px 15px;
+            margin: 25px 0 15px 0;
+            font-size: 11px;
+            font-weight: bold;
+            border-left: 4px solid #00f2fe;
+            letter-spacing: 2px;
+            box-shadow: inset 0 0 10px rgba(0, 242, 254, 0.2);
+        }
+
+        /* コンテンツエリア */
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            padding-top: 20px; 
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-bottom: 40px;
+        }
+
+        .banner-img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        /* カスタムスクロールバー */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-thumb { background: #345485; }
+
+        /* 🌸 控えめでスタイリッシュな画像ディスプレイBOX（心電図用） */
+        .image-display-box {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 380px;
+            height: 160px;
+            margin: 10px 0;
+            padding: 12px;
+            background: rgba(10, 15, 25, 0.85);
+            border: 1px solid rgba(0, 242, 254, 0.25);
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.08), inset 0 0 10px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .image-display-box:hover {
+            border-color: rgba(0, 242, 254, 0.5);
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.2), inset 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 四隅の近未来風コーナーアクセント */
+        .image-display-box::before,
+        .image-display-box::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-color: #00f2fe;
+            border-style: solid;
+            pointer-events: none;
+        }
+
+        .image-display-box::before {
+            top: -1px; left: -1px;
+            border-width: 2px 0 0 2px;
+        }
+
+        .image-display-box::after {
+            bottom: -1px; right: -1px;
+            border-width: 0 2px 2px 0;
+        }
+
+        /* 🌸 心電図（ECG）UIパーツスタイル */
+        .ecg-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .ecg-date {
+            font-size: 11px;
+            color: rgba(220, 235, 255, 0.6);
+        }
+
+        .ecg-sub {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: #ff4b6e;
+            margin-top: 2px;
+        }
+
+        .ecg-heart-icon {
+            font-size: 10px;
+            animation: pulse 1.2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.25); }
+            100% { transform: scale(1); }
+        }
+
+        /* 🌸 SVG波形グラフ表示エリア */
+        .ecg-graph-container {
+            width: 100%;
+            height: 85px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 縦のグリッド線（Apple Watch風） */
+        .ecg-grid {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 25% 100%;
+            pointer-events: none;
+        }
+
+        .ecg-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .ecg-path {
+            fill: none;
+            stroke: #ff3b30; /* サイバーレッド（綺麗なネオン赤） */
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            filter: drop-shadow(0 0 3px rgba(255, 59, 48, 0.8));
+        }
+    </style>
+</head>
+<body>
+
+    <div class="system-banner">
+        HEALTH CHECK SYSTEM
+    </div>
+
+    <div class="container">
+        <br>
+        <a href="https://socrarius-tool.com/ColorBanana/ColorBanana.jpg" target="_blank" rel="noopener noreferrer">
+            <img src="https://socrarius-tool.com/ColorBanana/ColorBanana2.webp" class="banner-img">
+        </a>
+        <br>  
+
+        <!-- 心電図セクション -->
+        <div class="section-title">ELECTRO-CARDIOGRAM (ECG)</div>
+
+        <!-- 1回目の記録：洞調律（正常） -->
+        <div class="image-display-box">
+            <div>
+                <div class="ecg-header">
+                    <span>洞調律</span>
+                    <span class="ecg-date">今日 14:32 ›</span>
+                </div>
+                <div class="ecg-sub">
+                    <span class="ecg-heart-icon">❤️</span> 平均拍/分: 99
+                </div>
+            </div>
+            <div class="ecg-graph-container">
+                <div class="ecg-grid"></div>
+                <svg class="ecg-svg" viewBox="0 0 360 85" preserveAspectRatio="none">
+                    <!-- 綺麗に規則正しいP-QRS-T波（手描き風プログラム波形） -->
+                    <path class="ecg-path" d="
+                        M 0 50 L 15 50 Q 20 48 23 50 L 27 50 L 30 58 L 35 12 L 40 68 L 43 50 L 52 50 Q 60 40 68 50 L 85 50
+                        L 100 50 L 105 50 Q 110 48 113 50 L 117 50 L 120 58 L 125 12 L 130 68 L 133 50 L 142 50 Q 150 40 158 50 L 175 50
+                        L 190 50 L 195 50 Q 200 48 203 50 L 207 50 L 210 58 L 215 12 L 220 68 L 223 50 L 232 50 Q 240 40 248 50 L 265 50
+                        L 280 50 L 285 50 Q 290 48 293 50 L 297 50 L 300 58 L 305 12 L 310 68 L 313 50 L 322 50 Q 330 40 338 50 L 360 50
+                    " />
+                </svg>
+            </div>
+        </div>
+
+        <!-- 2回目の記録：高心拍数（乱れ・激しい波形） -->
+        <div class="image-display-box">
+            <div>
+                <div class="ecg-header">
+                    <span>高心拍数</span>
+                    <span class="ecg-date">25/12/31 19:53 ›</span>
+                </div>
+                <div class="ecg-sub">
+                    <span class="ecg-heart-icon">❤️</span> 平均拍/分: 126
+                </div>
+            </div>
+            <div class="ecg-graph-container">
+                <div class="ecg-grid"></div>
+                <svg class="ecg-svg" viewBox="0 0 360 85" preserveAspectRatio="none">
+                    <!-- 画像2枚目の「高心拍数」の激しいアップダウンを再現 -->
+                    <path class="ecg-path" d="
+                        M 0 65 L 12 10 L 18 75 L 25 40 L 32 60 L 40 50 L 50 68 L 58 20 L 65 78 L 78 45 L 85 60
+                        L 95 30 L 105 12 L 115 55 L 125 78 L 135 60 L 145 78 L 155 70 L 165 25 L 172 75 L 180 50
+                        L 190 78 L 198 30 L 205 65 L 212 55 L 220 20 L 228 78 L 238 60 L 248 70 L 255 35 L 262 80 L 270 50
+                        L 280 75 L 290 20 L 298 78 L 310 50 L 325 75 L 335 15 L 345 78 L 360 50
+                    " />
+                </svg>
+            </div>
+        </div>
+
+        <!-- 3回目の記録：高心拍数（規則的・高密度波形） -->
+        <div class="image-display-box">
+            <div>
+                <div class="ecg-header">
+                    <span>高心拍数</span>
+                    <span class="ecg-date">25/12/5 9:09 ›</span>
+                </div>
+                <div class="ecg-sub">
+                    <span class="ecg-heart-icon">❤️</span> 平均拍/分: 122
+                </div>
+            </div>
+            <div class="ecg-graph-container">
+                <div class="ecg-grid"></div>
+                <svg class="ecg-svg" viewBox="0 0 360 85" preserveAspectRatio="none">
+                    <!-- 規則的だけど間隔が狭くて高い波形 -->
+                    <path class="ecg-path" d="
+                        M 0 50 L 10 50 Q 13 48 15 50 L 18 50 L 20 62 L 23 10 L 27 72 L 29 50 L 35 50 Q 42 38 48 50 L 58 50
+                        L 65 50 Q 68 48 70 50 L 73 50 L 75 62 L 78 10 L 82 72 L 84 50 L 90 50 Q 97 38 103 50 L 113 50
+                        L 120 50 Q 123 48 125 50 L 128 50 L 130 62 L 133 10 L 137 72 L 139 50 L 145 50 Q 152 38 158 50 L 168 50
+                        L 175 50 Q 178 48 180 50 L 183 50 L 185 62 L 188 10 L 192 72 L 194 50 L 200 50 Q 207 38 213 50 L 223 50
+                        L 230 50 Q 233 48 235 50 L 238 50 L 240 62 L 243 10 L 247 72 L 249 50 L 255 50 Q 262 38 268 50 L 278 50
+                        L 285 50 Q 288 48 290 50 L 293 50 L 295 62 L 298 10 L 302 72 L 304 50 L 310 50 Q 317 38 323 50 L 333 50
+                        L 340 50 Q 343 48 345 50 L 348 50 L 350 62 L 353 10 L 357 72 L 360 50
+                    " />
+                </svg>
+            </div>
+        </div>
+
+        <br><br>  
+    </div>
+
+</body>
+</html>
