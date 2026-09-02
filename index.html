@@ -133,6 +133,7 @@
 
         .ecg-heart-icon {
             font-size: 10px;
+            display: inline-block;
             animation: pulse 1.2s infinite;
         }
 
@@ -153,7 +154,7 @@
             overflow: hidden;
         }
 
-        /* 縦のグリッド線（Apple Watch風） */
+        /* 縦のグリッド線 */
         .ecg-grid {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -169,12 +170,217 @@
 
         .ecg-path {
             fill: none;
-            stroke: #ff3b30; /* サイバーレッド（綺麗なネオン赤） */
+            stroke: #ff3b30;
             stroke-width: 2;
             stroke-linecap: round;
             stroke-linejoin: round;
             filter: drop-shadow(0 0 3px rgba(255, 59, 48, 0.8));
         }
+
+        /* 🌸 体重ログ用のスタイリング */
+.weight-box {
+    height: 230px !important; /* 少し高さを確保 */
+    border-color: rgba(255, 119, 0, 0.3) !important;
+}
+
+.weight-box:hover {
+    border-color: rgba(255, 119, 0, 0.6) !important;
+    box-shadow: 0 0 20px rgba(255, 119, 0, 0.2), inset 0 0 10px rgba(0, 0, 0, 0.5) !important;
+}
+
+.weight-box::before,
+.weight-box::after {
+    border-color: #ff7700 !important; /* サイバーオレンジ */
+}
+
+.weight-sub-info {
+    margin-top: 4px;
+}
+
+.weight-main-val {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+}
+
+.weight-num {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ff7700;
+}
+
+.weight-unit {
+    font-size: 12px;
+    color: #ffaa00;
+}
+
+.weight-target {
+    font-size: 10px;
+    color: rgba(220, 235, 255, 0.5);
+    margin-left: 6px;
+}
+
+.weight-cal-info {
+    font-size: 10px;
+    color: #ffaa00;
+    margin-top: 2px;
+}
+
+/* 棒グラフコンテナ */
+.weight-graph-container {
+    width: 100%;
+    height: 130px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 119, 0, 0.15);
+    border-radius: 6px;
+    position: relative;
+    padding: 8px 12px 4px 12px;
+    box-sizing: border-box;
+}
+
+.weight-grid-line {
+    position: absolute;
+    top: 50%; left: 0; width: 100%;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+}
+
+.weight-bars-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 100%;
+    width: 100%;
+}
+
+.weight-bar-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 12%;
+}
+
+.weight-bar-wrapper {
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.weight-bar {
+    width: 100%;
+    max-width: 18px;
+    background: linear-gradient(180deg, #ff8c00 0%, #ff3b00 100%);
+    border-radius: 2px 2px 0 0;
+    box-shadow: 0 0 6px rgba(255, 119, 0, 0.6);
+    transition: height 0.5s ease;
+}
+
+.weight-bar-day {
+    font-size: 9px;
+    color: rgba(220, 235, 255, 0.5);
+    margin-top: 4px;
+}
+
+/* 🌸 睡眠ログ用のスタイリング（ディープパープル/ブルー） */
+.sleep-box {
+    height: 230px !important;
+    border-color: rgba(94, 92, 230, 0.4) !important;
+}
+
+.sleep-box:hover {
+    border-color: rgba(140, 120, 255, 0.7) !important;
+    box-shadow: 0 0 20px rgba(94, 92, 230, 0.25), inset 0 0 10px rgba(0, 0, 0, 0.5) !important;
+}
+
+.sleep-box::before,
+.sleep-box::after {
+    border-color: #7d7aff !important; /* ナイトブルーパープル */
+}
+
+.sleep-sub-info {
+    margin-top: 4px;
+}
+
+.sleep-main-val {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.sleep-num {
+    font-size: 19px;
+    font-weight: bold;
+    color: #9d9bff;
+}
+
+.sleep-note {
+    font-size: 10px;
+    color: rgba(255, 180, 180, 0.7);
+}
+
+/* 睡眠グラフエリア */
+.sleep-graph-container {
+    width: 100%;
+    height: 130px;
+    background: rgba(5, 5, 20, 0.6);
+    border: 1px solid rgba(94, 92, 230, 0.2);
+    border-radius: 6px;
+    position: relative;
+    padding: 6px 12px 4px 12px;
+    box-sizing: border-box;
+}
+
+.sleep-grid-lines {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 4px 6px;
+    box-sizing: border-box;
+    pointer-events: none;
+    font-size: 8px;
+    color: rgba(255, 255, 255, 0.15);
+}
+
+.sleep-bars-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 100%;
+    width: 100%;
+}
+
+.sleep-bar-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 12%;
+}
+
+.sleep-bar-wrapper {
+    position: relative;
+    flex-grow: 1;
+    width: 100%;
+}
+
+.sleep-block {
+    position: absolute;
+    left: 10%;
+    width: 80%;
+    border-radius: 3px;
+    box-shadow: 0 0 8px rgba(125, 122, 255, 0.5);
+}
+
+.sleep-bar-day {
+    font-size: 9px;
+    color: rgba(220, 235, 255, 0.5);
+    margin-top: 4px;
+}
     </style>
 </head>
 <body>
@@ -190,89 +396,266 @@
         </a>
         <br>  
 
+        <!-- 🌸 体重セクション（section-title を使うと綺麗に下に表示されます！） -->
+        <div class="section-title">BODY WEIGHT LOG</div>
+        <!-- 体重表示BOX（オレンジサイバー風） -->
+        <div id="weight-list-container"></div>
+
+        <!-- 🌸 スリーブセクション -->
+        <div class="section-title">SLEEP ANALYSIS LOG</div>
+        <div id="sleep-list-container"></div>
+
         <!-- 心電図セクション -->
         <div class="section-title">ELECTRO-CARDIOGRAM (ECG)</div>
 
-        <!-- 1回目の記録：洞調律（正常） -->
-        <div class="image-display-box">
-            <div>
-                <div class="ecg-header">
-                    <span>洞調律</span>
-                    <span class="ecg-date">今日 14:32 ›</span>
-                </div>
-                <div class="ecg-sub">
-                    <span class="ecg-heart-icon">❤️</span> 平均拍/分: 99
-                </div>
-            </div>
-            <div class="ecg-graph-container">
-                <div class="ecg-grid"></div>
-                <svg class="ecg-svg" viewBox="0 0 360 85" preserveAspectRatio="none">
-                    <!-- 綺麗に規則正しいP-QRS-T波（手描き風プログラム波形） -->
-                    <path class="ecg-path" d="
-                        M 0 50 L 15 50 Q 20 48 23 50 L 27 50 L 30 58 L 35 12 L 40 68 L 43 50 L 52 50 Q 60 40 68 50 L 85 50
-                        L 100 50 L 105 50 Q 110 48 113 50 L 117 50 L 120 58 L 125 12 L 130 68 L 133 50 L 142 50 Q 150 40 158 50 L 175 50
-                        L 190 50 L 195 50 Q 200 48 203 50 L 207 50 L 210 58 L 215 12 L 220 68 L 223 50 L 232 50 Q 240 40 248 50 L 265 50
-                        L 280 50 L 285 50 Q 290 48 293 50 L 297 50 L 300 58 L 305 12 L 310 68 L 313 50 L 322 50 Q 330 40 338 50 L 360 50
-                    " />
-                </svg>
-            </div>
-        </div>
+        <!-- 🌸 ここにJavaScriptでBOXが自動生成されます -->
+        <div id="ecg-list-container"></div>
 
-        <!-- 2回目の記録：高心拍数（乱れ・激しい波形） -->
-        <div class="image-display-box">
-            <div>
-                <div class="ecg-header">
-                    <span>高心拍数</span>
-                    <span class="ecg-date">25/12/31 19:53 ›</span>
-                </div>
-                <div class="ecg-sub">
-                    <span class="ecg-heart-icon">❤️</span> 平均拍/分: 126
-                </div>
-            </div>
-            <div class="ecg-graph-container">
-                <div class="ecg-grid"></div>
-                <svg class="ecg-svg" viewBox="0 0 360 85" preserveAspectRatio="none">
-                    <!-- 画像2枚目の「高心拍数」の激しいアップダウンを再現 -->
-                    <path class="ecg-path" d="
-                        M 0 65 L 12 10 L 18 75 L 25 40 L 32 60 L 40 50 L 50 68 L 58 20 L 65 78 L 78 45 L 85 60
-                        L 95 30 L 105 12 L 115 55 L 125 78 L 135 60 L 145 78 L 155 70 L 165 25 L 172 75 L 180 50
-                        L 190 78 L 198 30 L 205 65 L 212 55 L 220 20 L 228 78 L 238 60 L 248 70 L 255 35 L 262 80 L 270 50
-                        L 280 75 L 290 20 L 298 78 L 310 50 L 325 75 L 335 15 L 345 78 L 360 50
-                    " />
-                </svg>
-            </div>
-        </div>
+        <br> 
 
-        <!-- 3回目の記録：高心拍数（規則的・高密度波形） -->
-        <div class="image-display-box">
-            <div>
-                <div class="ecg-header">
-                    <span>高心拍数</span>
-                    <span class="ecg-date">25/12/5 9:09 ›</span>
-                </div>
-                <div class="ecg-sub">
-                    <span class="ecg-heart-icon">❤️</span> 平均拍/分: 122
-                </div>
-            </div>
-            <div class="ecg-graph-container">
-                <div class="ecg-grid"></div>
-                <svg class="ecg-svg" viewBox="0 0 360 85" preserveAspectRatio="none">
-                    <!-- 規則的だけど間隔が狭くて高い波形 -->
-                    <path class="ecg-path" d="
-                        M 0 50 L 10 50 Q 13 48 15 50 L 18 50 L 20 62 L 23 10 L 27 72 L 29 50 L 35 50 Q 42 38 48 50 L 58 50
-                        L 65 50 Q 68 48 70 50 L 73 50 L 75 62 L 78 10 L 82 72 L 84 50 L 90 50 Q 97 38 103 50 L 113 50
-                        L 120 50 Q 123 48 125 50 L 128 50 L 130 62 L 133 10 L 137 72 L 139 50 L 145 50 Q 152 38 158 50 L 168 50
-                        L 175 50 Q 178 48 180 50 L 183 50 L 185 62 L 188 10 L 192 72 L 194 50 L 200 50 Q 207 38 213 50 L 223 50
-                        L 230 50 Q 233 48 235 50 L 238 50 L 240 62 L 243 10 L 247 72 L 249 50 L 255 50 Q 262 38 268 50 L 278 50
-                        L 285 50 Q 288 48 290 50 L 293 50 L 295 62 L 298 10 L 302 72 L 304 50 L 310 50 Q 317 38 323 50 L 333 50
-                        L 340 50 Q 343 48 345 50 L 348 50 L 350 62 L 353 10 L 357 72 L 360 50
-                    " />
-                </svg>
-            </div>
-        </div>
-
-        <br><br>  
     </div>
 
+    
+
+    <script>
+    // 🌸 1. 波形データの定義（タイプ別にグラフの形を固定！）
+    const ECG_PATTERNS = {
+        1: {
+            title: "洞調律",
+            path: "M 0 50 L 15 50 Q 20 48 23 50 L 27 50 L 30 58 L 35 12 L 40 68 L 43 50 L 52 50 Q 60 40 68 50 L 85 50 L 100 50 L 105 50 Q 110 48 113 50 L 117 50 L 120 58 L 125 12 L 130 68 L 133 50 L 142 50 Q 150 40 158 50 L 175 50 L 190 50 L 195 50 Q 200 48 203 50 L 207 50 L 210 58 L 215 12 L 220 68 L 223 50 L 232 50 Q 240 40 248 50 L 265 50 L 280 50 L 285 50 Q 290 48 293 50 L 297 50 L 300 58 L 305 12 L 310 68 L 313 50 L 322 50 Q 330 40 338 50 L 360 50"
+        },
+        2: {
+            title: "高心拍数",
+            path: "M 0 65 L 12 10 L 18 75 L 25 40 L 32 60 L 40 50 L 50 68 L 58 20 L 65 78 L 78 45 L 85 60 L 95 30 L 105 12 L 115 55 L 125 78 L 135 60 L 145 78 L 155 70 L 165 25 L 172 75 L 180 50 L 190 78 L 198 30 L 205 65 L 212 55 L 220 20 L 228 78 L 238 60 L 248 70 L 255 35 L 262 80 L 270 50 L 280 75 L 290 20 L 298 78 L 310 50 L 325 75 L 335 15 L 345 78 L 360 50"
+        },
+        3: {
+            title: "未定（予備）",
+            path: "M 0 50 L 360 50" // 今はまっすぐな直線（今後波形を追加できます！）
+        }
+    };
+
+    // 🌸🌸🌸 2. ケンくんが書き換える記録データ（ここを自由に追加・変更するだけ！）🌸🌸🌸　🪐現状はβの手打ち記録　いつかウェアラブルと連動させたい🪐
+    const myEcgRecords = [
+        { type: 1, bpm: 99,  date: "今日 14:32" },
+        { type: 2, bpm: 126, date: "25/12/31 19:53" },
+        { type: 2, bpm: 122, date: "25/12/5 9:09" }
+        // 💡 今後記録が増えたらここに `{ type: 1, bpm: 85, date: "26/01/10 10:00" },` のように足すだけ！
+    ];
+
+    // 🌸 3. 自動描画プログラム（HTML要素を組み立てて描画！）
+    function renderEcgList() {
+        const container = document.getElementById("ecg-list-container");
+        container.innerHTML = ""; // 一旦リセット
+
+        myEcgRecords.forEach(record => {
+            // typeの数値（1や2）から波形パターンとタイトルを取得
+            const pattern = ECG_PATTERNS[record.type] || ECG_PATTERNS[1];
+
+            // BOX要素の組み立て
+            const box = document.createElement("div");
+            box.className = "image-display-box";
+            box.innerHTML = `
+                <div>
+                    <div class="ecg-header">
+                        <span>${pattern.title}</span>
+                        <span class="ecg-date">${record.date} ›</span>
+                    </div>
+                    <div class="ecg-sub">
+                        <span class="ecg-heart-icon">❤️</span> 平均拍/分: ${record.bpm}
+                    </div>
+                </div>
+                <div class="ecg-graph-container">
+                    <div class="ecg-grid"></div>
+                    <svg class="ecg-svg" viewBox="0 0 360 85" preserveAspectRatio="none">
+                        <path class="ecg-path" d="${pattern.path}" />
+                    </svg>
+                </div>
+            `;
+            container.appendChild(box);
+        });
+    }
+
+    // 画面ロード時に自動実行！
+    renderEcgList();
+
+    // 🌸 体重グラフのパターン（1:順調、2:停滞、3:微増などでお好みで選べる！）
+const WEIGHT_PATTERNS = {
+    1: [150, 180, 220, 190, 170, 140, 160], // バランス型
+    2: [120, 250, 310, 210, 190, 140, 145], // 激しい運動・集中型（スクショ再現）
+    3: [100, 110, 105, 120, 115, 110, 105], // 平穏・低活動型
+    4: [200, 220, 240, 210, 230, 250, 260], // 高消費型
+    5: [80, 90, 85, 100, 95, 90, 85]        // 省エネ型
+};
+
+// 🌸🌸🌸 ケンくんの体重データ（ここを書き換えて追記していきます！）🌸🌸🌸　🪐現状はβの手打ち測定　いつかウェアラブルと連動させたい🪐
+const myWeightRecords = [
+    { 
+        type: 2, 
+        currentWeight: 73.5, 
+        targetWeight: 58.0, 
+        avgCal: 174, 
+        dateRange: "2026年8月27日〜9月2日",
+        days: ["木", "金", "土", "日", "月", "火", "水"] 
+    }
+    // 💡 体重が増減した時はここにデータ項目を追加していくだけ！
+];
+
+// 🌸 体重BOXの描画プログラム
+function renderWeightList() {
+    const container = document.getElementById("weight-list-container");
+    if (!container) return;
+    container.innerHTML = "";
+
+    myWeightRecords.forEach(record => {
+        const heights = WEIGHT_PATTERNS[record.type] || WEIGHT_PATTERNS[1];
+        
+        // 7日分の棒グラフHTMLを自動生成
+        let barsHtml = "";
+        const maxHeight = Math.max(...heights, 300); // 基準の高さ
+
+        record.days.forEach((day, index) => {
+            const h = heights[index] || 100;
+            const heightPercent = Math.min(Math.round((h / maxHeight) * 100), 100);
+            
+            barsHtml += `
+                <div class="weight-bar-col">
+                    <div class="weight-bar-wrapper">
+                        <div class="weight-bar" style="height: ${heightPercent}%;"></div>
+                    </div>
+                    <span class="weight-bar-day">${day}</span>
+                </div>
+            `;
+        });
+
+        // 差分の計算（目標まであと何kgか）
+        const diff = (record.currentWeight - record.targetWeight).toFixed(1);
+
+        const box = document.createElement("div");
+        box.className = "image-display-box weight-box";
+        box.innerHTML = `
+            <div>
+                <div class="ecg-header">
+                    <span>アクティブエネルギー</span>
+                    <span class="ecg-date">${record.dateRange} ›</span>
+                </div>
+                <div class="weight-sub-info">
+                    <div class="weight-main-val">
+                        <span class="weight-num">${record.currentWeight}</span><span class="weight-unit">kg</span>
+                        <span class="weight-target">(目標: ${record.targetWeight}kg / 残り ${diff}kg)</span>
+                    </div>
+                    <div class="weight-cal-info">
+                        🔥 平均 ${record.avgCal} kcal/日
+                    </div>
+                </div>
+            </div>
+            <div class="weight-graph-container">
+                <div class="weight-grid-line"></div>
+                <div class="weight-bars-flex">
+                    ${barsHtml}
+                </div>
+            </div>
+        `;
+        container.appendChild(box);
+    });
+}
+
+// 実行！
+renderWeightList();
+
+// 🌸 睡眠グラフのパターン（1:超人モード[スクショ再現]、2:標準睡眠、3:ショートスリーパー等）
+const SLEEP_PATTERNS = {
+    1: { // スクショ再現：飛び飛びの極短睡眠
+        blocks: [
+            { dayIdx: 0, startTop: 50, height: 18, color: "#5e5ce6" }, // 木曜のお昼寝
+            { dayIdx: 6, startTop: 65, height: 12, color: "#ac8eef" }  // 水曜の短時間
+        ]
+    },
+    2: { // しっかり睡眠パターン（1日6〜7時間）
+        blocks: [
+            { dayIdx: 0, startTop: 15, height: 50, color: "#5e5ce6" },
+            { dayIdx: 1, startTop: 20, height: 45, color: "#5e5ce6" },
+            { dayIdx: 2, startTop: 10, height: 55, color: "#5e5ce6" },
+            { dayIdx: 3, startTop: 25, height: 40, color: "#5e5ce6" },
+            { dayIdx: 4, startTop: 18, height: 48, color: "#5e5ce6" },
+            { dayIdx: 5, startTop: 15, height: 52, color: "#5e5ce6" },
+            { dayIdx: 6, startTop: 22, height: 42, color: "#5e5ce6" }
+        ]
+    }
+};
+
+// 🌸🌸🌸 ケンくんの睡眠データ（ここを書き換えて記録！）🌸🌸🌸　🪐現状はβの手打ち測定　いつかウェアラブルと連動させたい🪐
+const mySleepRecords = [
+    { 
+        type: 1, 
+        avgHours: "1時間48分", 
+        dateRange: "2026年8月20日〜26日",
+        scheduleNext: "22:30",
+        scheduleWake: "7:00",
+        days: ["木", "金", "土", "日", "月", "火", "水"] 
+    }
+];
+
+// 🌸 睡眠BOXの描画プログラム
+function renderSleepList() {
+    const container = document.getElementById("sleep-list-container");
+    if (!container) return;
+    container.innerHTML = "";
+
+    mySleepRecords.forEach(record => {
+        const patternData = SLEEP_PATTERNS[record.type] || SLEEP_PATTERNS[1];
+        
+        // 7日分の列グリッド生成
+        let colsHtml = "";
+        record.days.forEach((day, index) => {
+            // この日に該当するブロックを探す
+            const dayBlocks = patternData.blocks.filter(b => b.dayIdx === index);
+            let blocksInner = "";
+
+            dayBlocks.forEach(b => {
+                blocksInner += `<div class="sleep-block" style="top: ${b.startTop}%; height: ${b.height}%; background: ${b.color};"></div>`;
+            });
+
+            colsHtml += `
+                <div class="sleep-bar-col">
+                    <div class="sleep-bar-wrapper">
+                        ${blocksInner}
+                    </div>
+                    <span class="sleep-bar-day">${day}</span>
+                </div>
+            `;
+        });
+
+        const box = document.createElement("div");
+        box.className = "image-display-box sleep-box";
+        box.innerHTML = `
+            <div>
+                <div class="ecg-header">
+                    <span>睡眠時間 (平均)</span>
+                    <span class="ecg-date">${record.dateRange} ›</span>
+                </div>
+                <div class="sleep-sub-info">
+                    <div class="sleep-main-val">
+                        <span class="sleep-num">${record.avgHours}</span>
+                        <span class="sleep-note">⚠️ Watch充電中のため昼寝のみ計測</span>
+                    </div>
+                </div>
+            </div>
+            <div class="sleep-graph-container">
+                <div class="sleep-grid-lines">
+                    <span>0:00</span>
+                    <span>12:00</span>
+                </div>
+                <div class="sleep-bars-flex">
+                    ${colsHtml}
+                </div>
+            </div>
+        `;
+        container.appendChild(box);
+    });
+}
+
+// 実行！
+renderSleepList();
+    </script>
 </body>
 </html>
