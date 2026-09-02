@@ -6,7 +6,8 @@
     <title>HEALTH CHECK SYSTEM</title>
     <style>
         body {
-            background: rgba(0, 5, 15, 0.9);
+            background-color: #101b20;
+            background-image: url("https://socrarius-tool.com/launcher/background.webp");
             color: #e0f7ff;
             font-family: 'Consolas', 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
@@ -35,6 +36,19 @@
             color: #00f2fe;
             padding: 8px 15px;
             margin: 25px 0 15px 0;
+            font-size: 11px;
+            font-weight: bold;
+            border-left: 4px solid #00f2fe;
+            letter-spacing: 2px;
+            box-shadow: inset 0 0 10px rgba(0, 242, 254, 0.2);
+        }
+
+        /* 🌸 セクションタイトル */
+        .ｍedication-title {
+            background: #000;
+            color: #00f2fe;
+            padding: 8px 15px;
+            margin: -20px 40px 15px 20px;
             font-size: 11px;
             font-weight: bold;
             border-left: 4px solid #00f2fe;
@@ -381,6 +395,28 @@
     color: rgba(220, 235, 255, 0.5);
     margin-top: 4px;
 }
+
+ .gallery {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+            gap: 15px; margin-left: 20px ; margin-right: 40px; padding: 15px;
+            border: 1px solid rgba(0, 242, 254, 0.15); background: rgba(255, 255, 255, 0.02);
+        }
+        /* アイコンリンクの基本設定と光の魔法 */
+        .icon-link img {
+            width: 55px; height: 55px; object-fit: cover;
+            border: 1px solid rgba(0, 242, 254, 0.3); 
+            border-radius: 4px;
+            transition: all 0.3s ease; /* 変化をなめらかにする魔法  */
+            cursor: pointer;
+        }
+
+        /*  マウスを乗せた時の反応（ホバー） */
+        .icon-link img:hover {
+            transform: translateY(-2px); /* 若干上に浮き上がります  */
+            border-color: #00f2fe; /* 縁の色をはっきりさせます  */
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.8); /* 淵に光を付与します  */
+            filter: brightness(1.2); /* アイコン自体も少し明るくします  */
+        }
     </style>
 </head>
 <body>
@@ -390,12 +426,7 @@
     </div>
 
     <div class="container">
-        <br>
-        <a href="https://socrarius-tool.com/ColorBanana/ColorBanana.jpg" target="_blank" rel="noopener noreferrer">
-            <img src="https://socrarius-tool.com/ColorBanana/ColorBanana2.webp" class="banner-img">
-        </a>
-        <br>  
-
+ 
         <!-- 🌸 体重セクション（section-title を使うと綺麗に下に表示されます！） -->
         <div class="section-title">BODY WEIGHT LOG</div>
         <!-- 体重表示BOX（オレンジサイバー風） -->
@@ -415,7 +446,29 @@
 
     </div>
 
-    
+    <div class="ｍedication-title">ONLINE CONSULTATIONS & MEDICATION</div>
+
+    <div class="gallery">
+                <a href="https://clinic.dmm.com/" target="_blank" class="icon-link">
+                    <img src="https://socrarius-tool.com/health/icon1.png">
+                </a>
+                <a href="https://estore.nicho.co.jp/" target="_blank" class="icon-link">
+                    <img src="https://socrarius-tool.com/health/icon2.png">
+                </a>
+                <a href="https://net-kusuri.com/" target="_blank" class="icon-link">
+                    <img src="https://socrarius-tool.com/health/icon3.png">
+                </a>
+                <a href="https://goo-med.com/" target="_blank" class="icon-link">
+                    <img src="https://socrarius-tool.com/health/icon4.png">
+                </a>
+                <a href="https://www.amazon.co.jp/" target="_blank" class="icon-link">
+                    <img src="https://socrarius-tool.com/health/icon5.png">
+                </a>
+                <a href="https://shopping.yahoo.co.jp/" target="_blank" class="icon-link">
+                    <img src="https://socrarius-tool.com/health/icon6.png">
+                </a>
+            </div>
+
 
     <script>
     // 🌸 1. 波形データの定義（タイプ別にグラフの形を固定！）
