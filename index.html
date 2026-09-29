@@ -7,6 +7,9 @@
     <audio id="click" preload="auto">
     <source src="https://socrarius-tool.com/launcher/magic20.mp3" type="audio/mp3">
     </audio>
+    <audio id="magic" preload="auto">
+    <source src="https://socrarius-tool.com/launcher/magic22.mp3" type="audio/mp3">
+    </audio>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HEALTH CHECK SYSTEM</title>
@@ -423,6 +426,43 @@
             box-shadow: 0 0 15px rgba(0, 242, 254, 0.8); /* 淵に光を付与します  */
             filter: brightness(1.2); /* アイコン自体も少し明るくします  */
         }
+
+         /* SAO風のコンテナ枠設定 */
+.sao-video-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6px; /* 内側の黒い隙間（SAOの二重枠っぽさ） */
+    background: rgba(0, 0, 0, 0.6); /* 半透明のダーク背景 */
+    border: 2px solid #ff7700; /* SAOといえば情熱的なオレンジ、またはサイバーな淡い光 */
+    box-shadow: 0 0 15px rgba(255, 119, 0, 0.4), inset 0 0 10px rgba(255, 119, 0, 0.3);
+    border-radius: 4px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+
+/* 四隅の近未来UI風コーナーデコレーション */
+.sao-corner {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: 3px solid #ffffff; /* 輝く角のアクセント */
+    z-index: 10;
+}
+.sao-corner.tl { top: 0; left: 0; border-right: none; border-bottom: none; }
+.sao-corner.tr { top: 0; right: 0; border-left: none; border-bottom: none; }
+.sao-corner.bl { bottom: 0; left: 0; border-right: none; border-top: none; }
+.sao-corner.br { bottom: 0; right: 0; border-left: none; border-top: none; }
+
+/* ついでに画像がscanlineを隠さないようにタグを調整 */
+.sao-movie-content {
+    display: block;
+    width: 100%;
+    height: auto;
+    position: relative;
+    z-index: 1; /* scanlineより下にする */
+}
     </style>
 </head>
 <body>
@@ -474,6 +514,22 @@
                     <img src="https://socrarius-tool.com/health/icon6.png">
                 </a>
             </div>
+
+
+    💫<!-- AI病院への扉うを設置する魔法 -->💫
+    <div class="ｍedication-title">Artificial Intelligence Hospitals</div>
+
+        <a href="https://socrarius-tool.com/Hospitals/" 
+        target="_blank" rel="noopener" 
+        class="sao-video-container sao-link-box play-sound" data-sound="magic">
+    
+        <div class="sao-corner tl"></div>
+        <div class="sao-corner tr"></div>
+        <div class="sao-corner bl"></div>
+        <div class="sao-corner br"></div>
+        <div class="sao-scanline"></div>
+        <img src="https://socrarius-tool.com/Hospitals/nurse.webp" class="sao-movie-content">  
+        </a>
 
 
     <script>
